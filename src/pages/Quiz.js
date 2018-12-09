@@ -51,11 +51,20 @@ export default class Quiz extends Component {
     }
 
     componentWillUnmount() {
+        if(!this.state.completed) return;
         data.answers = this.state.answers
         data.score = this.state.score;
-        
-        let leaderboardRef = firebase.database().ref('/user').child('/users')
-        leaderboardRef.set(data)
+        const {answers, score} = data;
+        const id = data.email.split('@')[0].replace('.', '')
+        let leaderboardRef = firebase.database()
+                                    .ref('/user')
+                                    .child(`/user-${id}-${data.count++}`)
+
+        localStorage.setItem('count', data.count)
+        leaderboardRef.set({
+            score,
+            answers
+        })
     }
 
     render() {
