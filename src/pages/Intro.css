@@ -1,0 +1,12 @@
+.App {
+    height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.headline {
+    font-size: 52px;
+    padding: 2rem;
+}
