@@ -6,7 +6,7 @@ import {Redirect} from 'react-router-dom'
 import data from '../data';
 import firebase from '../firebase'
 import './Quiz.css'
-import CryptoJS from 'crypto-js'
+// import CryptoJS from 'crypto-js'
 
 export default class Quiz extends Component {
 
@@ -51,10 +51,10 @@ export default class Quiz extends Component {
     }
 
     componentWillUnmount() {
-        data.answers = CryptoJS.AES.encrypt(this.state.answers);
+        data.answers = this.state.answers
         data.score = this.state.score;
         
-        const leaderboardRef = firebase.database().ref(`/user`)
+        let leaderboardRef = firebase.database().ref('/user').child('/users')
         leaderboardRef.set(data)
     }
 
