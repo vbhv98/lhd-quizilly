@@ -3,9 +3,21 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 .list-item {
     font-size: 32px;
+    width: 250px;
+    height: 250px;
+    background: darkgoldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.list-item a {
+    color: whitesmoke;
+    text-decoration: none;
 }

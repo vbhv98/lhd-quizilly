@@ -1,0 +1,13 @@
+.quiz {
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.quiz button {
+    margin-top: 35px;
+    font-size: 25px; 
+}

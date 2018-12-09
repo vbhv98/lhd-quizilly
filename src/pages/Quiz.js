@@ -5,6 +5,8 @@ import NavBar from '../components/NavBar';
 import {Redirect} from 'react-router-dom'
 import data from '../data';
 import firebase from '../firebase'
+import './Quiz.css'
+import CryptoJS from 'crypto-js'
 
 export default class Quiz extends Component {
 
@@ -12,13 +14,6 @@ export default class Quiz extends Component {
     constructor(props) {
         super(props)
 
-        
-        // switch(data.cat) {
-        //     case 'python':
-        //         questions = pyQuestions
-        //         break;
-        //     default: break;
-        // }
         this.optionRef = React.createRef()
         this.state = {
             questions: pyQuestions,
@@ -33,7 +28,7 @@ export default class Quiz extends Component {
     nextQues = (event) => {
 
         if(this.state.Qno >= this.state.questions.length) {
-            alert(`Answers are submitted check leaderboard.`)
+            alert(`Your score: ${this.state.score}`)
             this.setState({
                 completed: true
             })
@@ -56,21 +51,21 @@ export default class Quiz extends Component {
     }
 
     componentWillUnmount() {
-        data.answers = this.state.answers;
+        data.answers = CryptoJS.AES.encrypt(this.state.answers);
         data.score = this.state.score;
-
-        const leaderboardRef = firebase.database().ref('leaderboard')
-        leaderboardRef.push(data)
+        
+        const leaderboardRef = firebase.database().ref(`/user`)
+        leaderboardRef.set(data)
     }
 
     render() {
         const {Qno, questions, completed} = this.state;
         let question = questions[Qno-1]
         return (
-                completed ? <Redirect to='/leaderboard' /> : (
+                completed ? <Redirect to='/' /> : (
                     <React.Fragment>
                     <NavBar />
-                    <div>
+                    <div className="quiz">
                             <h2>{question.Question}</h2>
                             <ul>
                                 <li><input 

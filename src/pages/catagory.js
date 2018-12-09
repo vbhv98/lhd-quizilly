@@ -6,7 +6,7 @@ import './catagory.css'
 class Catagory extends Component {
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <NavBar />
                 <ul className="list">
                     <li className="list-item"><Link to="quiz"><a href="">Python</a></Link></li>
@@ -14,7 +14,7 @@ class Catagory extends Component {
                     <li className="list-item"><Link to="quiz"><a href="">HTML</a></Link></li>
                     <li className="list-item"><Link to="quiz"><a href="">JavaScript</a></Link></li>
                 </ul>
-            </div>
+                </React.Fragment>
         );
     }
 }
